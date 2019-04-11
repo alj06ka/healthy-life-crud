@@ -1,9 +1,9 @@
 package Phones.phones.mobilePhones;
 
 import Phones.phones.MobilePhone;
-import Phones.utils.LocalizedName;
+import Phones.utils.FieldName;
 
-@LocalizedName("Смартфон")
+@FieldName("Смартфон")
 public class SmartPhone extends MobilePhone {
     private boolean fourGSupport;
     private boolean waterResistant;
@@ -11,27 +11,27 @@ public class SmartPhone extends MobilePhone {
     private boolean faceId;
     private String operatingSystem;
 
-    @LocalizedName("4G")
+    @FieldName("4G")
     public boolean isFourGSupport() {
         return fourGSupport;
     }
 
-    @LocalizedName("Влагозащита")
+    @FieldName("Влагозащита")
     public boolean isWaterResistant() {
         return waterResistant;
     }
 
-    @LocalizedName("Сканер отпечатков пальцев")
+    @FieldName("Сканер отпечатков пальцев")
     public boolean isTouchID() {
         return touchID;
     }
 
-    @LocalizedName("Разблокировка по лицу")
+    @FieldName("Разблокировка по лицу")
     public boolean isFaceId() {
         return faceId;
     }
 
-    @LocalizedName("Операционная система")
+    @FieldName("Операционная система")
     public String getOperatingSystem() {
         return operatingSystem;
     }

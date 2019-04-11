@@ -1,13 +1,12 @@
 package Phones.phones;
 
-import Phones.phones.AbstractPhone;
-import Phones.utils.LocalizedName;
+import Phones.utils.FieldName;
 
 public abstract class MobilePhone extends AbstractPhone {
     private int simSlots;
     private Screen resolution;
 
-    @LocalizedName("Количество слотов для симкарт")
+    @FieldName("Количество слотов для симкарт")
     public int getSimSlots() {
         return simSlots;
     }
@@ -16,7 +15,7 @@ public abstract class MobilePhone extends AbstractPhone {
         this.simSlots = simSlots;
     }
 
-    @LocalizedName("Разрешение экрана")
+    @FieldName("Разрешение экрана")
     public Screen getResolution() {
         return resolution;
     }
@@ -29,7 +28,7 @@ public abstract class MobilePhone extends AbstractPhone {
         private int width;
         private int height;
 
-        @LocalizedName("Ширина")
+        @FieldName("Ширина")
         public int getWidth() {
             return width;
         }
@@ -38,7 +37,7 @@ public abstract class MobilePhone extends AbstractPhone {
             this.width = width;
         }
 
-        @LocalizedName("Высота")
+        @FieldName("Высота")
         public int getHeight() {
             return height;
         }
