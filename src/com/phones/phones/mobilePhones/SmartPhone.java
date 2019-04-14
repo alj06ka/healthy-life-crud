@@ -1,9 +1,9 @@
-package Phones.phones.mobilePhones;
+package com.phones.phones.mobilePhones;
 
-import Phones.phones.MobilePhone;
-import Phones.utils.FieldName;
+import com.phones.phones.MobilePhone;
+import com.phones.utils.LocalizedName;
 
-@FieldName("Смартфон")
+@LocalizedName("Смартфон")
 public class SmartPhone extends MobilePhone {
     private boolean fourGSupport;
     private boolean waterResistant;
@@ -11,27 +11,27 @@ public class SmartPhone extends MobilePhone {
     private boolean faceId;
     private String operatingSystem;
 
-    @FieldName("4G")
+    @LocalizedName("4G")
     public boolean isFourGSupport() {
         return fourGSupport;
     }
 
-    @FieldName("Влагозащита")
+    @LocalizedName("Влагозащита")
     public boolean isWaterResistant() {
         return waterResistant;
     }
 
-    @FieldName("Сканер отпечатков пальцев")
+    @LocalizedName("Сканер отпечатков пальцев")
     public boolean isTouchID() {
         return touchID;
     }
 
-    @FieldName("Разблокировка по лицу")
+    @LocalizedName("Разблокировка по лицу")
     public boolean isFaceId() {
         return faceId;
     }
 
-    @FieldName("Операционная система")
+    @LocalizedName("Операционная система")
     public String getOperatingSystem() {
         return operatingSystem;
     }

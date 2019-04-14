@@ -1,6 +1,6 @@
-package Phones.phones;
+package com.phones.phones;
 
-import Phones.utils.FieldName;
+import com.phones.utils.LocalizedName;
 
 public abstract class AbstractPhone {
     public enum Color {
@@ -18,7 +18,7 @@ public abstract class AbstractPhone {
     private String number;
     private Color color;
 
-    @FieldName("Бренд")
+    @LocalizedName("Бренд")
     public String getBrand() {
         return brand;
     }
@@ -27,7 +27,7 @@ public abstract class AbstractPhone {
         this.brand = brand;
     }
 
-    @FieldName("Модель")
+    @LocalizedName("Модель")
     public String getModel() {
         return model;
     }
@@ -36,7 +36,7 @@ public abstract class AbstractPhone {
         this.model = model;
     }
 
-    @FieldName("Номер")
+    @LocalizedName("Номер")
     public String getNumber() {
         return number;
     }
@@ -45,7 +45,7 @@ public abstract class AbstractPhone {
         this.number = number;
     }
 
-    @FieldName("Цвет")
+    @LocalizedName("Цвет")
     public Color getColor() {
         return color;
     }
