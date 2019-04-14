@@ -1,9 +1,10 @@
-package Phones.utils;
+package com.phones.utils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,6 +34,14 @@ public class FieldsParser {
             }
         }
         return null;
+    }
+
+    private static boolean isBoxed(Class<?> classType) {
+        return PRIMITIVE_TYPE.containsKey(classType);
+    }
+
+    private static boolean isBoolean(Class<?> classType) {
+        return (classType == boolean.class || classType == Boolean.class);
     }
 
     /**
@@ -108,4 +117,21 @@ public class FieldsParser {
     private static boolean isGet(String methodName) {
         return methodName.startsWith("get") || methodName.startsWith("is");
     }
+
+    /**
+     * Getting field type of field.
+     *
+     * @param classType type of field
+     * @return type of field
+     */
+    public static FieldOptions.FieldType getFieldType(Class<?> classType) {
+        if (isBoolean(classType)) {
+            return FieldOptions.FieldType.BOOLEAN;
+        } else if (isBoxed(classType) || classType.isPrimitive() || classType.equals(String.class) || classType.isEnum()) {
+            return FieldOptions.FieldType.TEXT;
+        } else if (List.class.isAssignableFrom(classType)) {
+            return FieldOptions.FieldType.LIST;
+        } else return FieldOptions.FieldType.OBJECT;
+    }
+
 }

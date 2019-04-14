@@ -1,9 +1,13 @@
-package Phones.utils;
+package com.phones.utils;
 
 import java.lang.reflect.Method;
 
 public class FieldOptions {
 
+
+    public FieldType getFieldType() {
+        return FieldsParser.getFieldType(getClassType());
+    }
 
     public enum FieldType {
         LIST,
@@ -22,8 +26,8 @@ public class FieldOptions {
     }
 
     public String getFieldName() {
-        if (get.isAnnotationPresent(FieldName.class)) {
-            return get.getAnnotation(FieldName.class).value();
+        if (get.isAnnotationPresent(LocalizedName.class)) {
+            return get.getAnnotation(LocalizedName.class).value();
         }
         return getName();
     }
