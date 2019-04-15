@@ -5,24 +5,20 @@ import java.lang.reflect.Method;
 public class FieldOptions {
 
 
-    public FieldType getFieldType() {
-        return FieldsParser.getFieldType(getClassType());
-    }
-
-    public enum FieldType {
-        LIST,
-        OBJECT,
-        BOOLEAN,
-        TEXT
-    }
     private String name;
-
     private Object fieldValue;
     private Class<?> classType;
     private Method get, set;
 
+    /**
+     * Class designed for holding info about class fields
+     */
     public FieldOptions(String name) {
         this.name = name;
+    }
+
+    public FieldType getFieldType() {
+        return FieldsParser.getFieldType(getClassType());
     }
 
     public String getFieldName() {
@@ -70,5 +66,12 @@ public class FieldOptions {
 
     public void setClassType(Class<?> classType) {
         this.classType = classType;
+    }
+
+    public enum FieldType {
+        LIST,
+        OBJECT,
+        BOOLEAN,
+        TEXT
     }
 }
