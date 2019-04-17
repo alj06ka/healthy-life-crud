@@ -36,7 +36,7 @@ public class FieldsParser {
         return null;
     }
 
-    private static boolean isBoxed(Class<?> classType) {
+    public static boolean isBoxed(Class<?> classType) {
         return PRIMITIVE_TYPE.containsKey(classType);
     }
 
@@ -127,9 +127,9 @@ public class FieldsParser {
     public static FieldOptions.FieldType getFieldType(Class<?> classType) {
         if (isBoolean(classType)) {
             return FieldOptions.FieldType.BOOLEAN;
-        } else if (isBoxed(classType) || classType.isPrimitive() || classType.equals(String.class) || classType.isEnum()) {
+        } else if (isBoxed(classType) || classType.isPrimitive() || classType.equals(String.class)) {
             return FieldOptions.FieldType.TEXT;
-        } else if (List.class.isAssignableFrom(classType)) {
+        } else if (List.class.isAssignableFrom(classType) || classType.isEnum()) {
             return FieldOptions.FieldType.LIST;
         } else return FieldOptions.FieldType.OBJECT;
     }
