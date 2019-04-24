@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.lang.reflect.InvocationTargetException;
@@ -47,11 +48,12 @@ public class ExtractFields extends VBox {
      * Generate simple field like the following:
      * *Label*     *Component*
      */
-    private Node generatePrimitiveField(Object objectToInspect, FieldOptions field) {
+    public Node generatePrimitiveField(Object objectToInspect, FieldOptions field) {
         GridPane gridPane = new GridPane();
         gridPane.add(new Label(field.getFieldName()), 0, 0);
         // Add field generating here
-        Node generatedField = new FieldGenerator(objectToInspect, field);
+        Pane generatedField = new FieldGenerator(objectToInspect, field);
+        gridPane.add(generatedField, 1, 0);
         return gridPane;
     }
 }
