@@ -18,7 +18,7 @@ public class ExtractFields extends VBox {
     /**
      * Generate list of object fields to preview
      */
-    private ArrayList<Node> generateFields(Object objectToParse) {
+    public ArrayList<Node> generateFields(Object objectToParse) {
         ArrayList<FieldOptions> fields = FieldsParser.parseFields(objectToParse);
         ArrayList<Node> generatedFields = new ArrayList<>();
         for (FieldOptions field : fields) {
@@ -27,8 +27,12 @@ public class ExtractFields extends VBox {
                 generatedFields.add(new Label(field.getFieldName()));
                 try {
                     Object innerObject = field.getGet().invoke(objectToParse);
+                    if (innerObject == null){
+                        innerObject = field.getGet().getReturnType().getDeclaredConstructor().newInstance();
+                        field.getSet().invoke(objectToParse, innerObject);
+                    }
                     generatedFields.addAll(generateFields(innerObject));
-                } catch (IllegalAccessException | InvocationTargetException e) {
+                } catch (IllegalAccessException | InvocationTargetException | InstantiationException | NoSuchMethodException e) {
                     e.printStackTrace();
                 }
                 generatedFields.add(new Separator());
