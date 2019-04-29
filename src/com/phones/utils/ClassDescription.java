@@ -3,17 +3,21 @@ package com.phones.utils;
 import com.phones.phones.AbstractPhone;
 
 public class ClassDescription {
-    private final Class<? extends AbstractPhone> aClass;
+    private final Class<?> aClass;
     private final String name;
-    private AbstractPhone classObject;
+    private Object classObject;
 
-    public ClassDescription(Class<? extends AbstractPhone> aClass) {
+    public void setClassObject(AbstractPhone classObject) {
+        this.classObject = classObject;
+    }
+
+    public ClassDescription(Class<?> aClass) {
         this.aClass = aClass;
         this.name = getLocalName();
 
     }
 
-    public ClassDescription(AbstractPhone classObject) {
+    public ClassDescription(Object classObject) {
         this.classObject = classObject;
         this.aClass = classObject.getClass();
         this.name = getLocalName();
@@ -37,7 +41,7 @@ public class ClassDescription {
         return name;
     }
 
-    public AbstractPhone getClassObject() {
+    public Object getClassObject() {
         return classObject;
     }
 
