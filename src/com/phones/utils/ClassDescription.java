@@ -1,13 +1,14 @@
 package com.phones.utils;
 
-import com.phones.phones.AbstractPhone;
-
+/**
+ * Class for describing class and object of this class.
+ */
 public class ClassDescription {
     private final Class<?> aClass;
     private final String name;
     private Object classObject;
 
-    public void setClassObject(AbstractPhone classObject) {
+    public void setClassObject(Object classObject) {
         this.classObject = classObject;
     }
 
