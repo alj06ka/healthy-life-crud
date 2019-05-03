@@ -2,39 +2,26 @@ package com.phones.phones;
 
 import com.phones.utils.LocalizedName;
 
-public abstract class AbstractPhone {
+public abstract class AbstractPhone extends AbstractCommunicator {
     public enum Color {
+        @LocalizedName("Синий")
         BLUE,
+        @LocalizedName("Зелёный")
         GREEN,
+        @LocalizedName("Жёлтый")
         YELLOW,
+        @LocalizedName("Белый")
         WHITE,
+        @LocalizedName("Чёрный")
         BLACK,
+        @LocalizedName("Красный")
         RED,
+        @LocalizedName("Коралловый")
         CORAL
     }
 
-    private String brand;
-    private String model;
     private String number;
     private Color color;
-
-    @LocalizedName("Бренд")
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    @LocalizedName("Модель")
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
 
     @LocalizedName("Номер")
     public String getNumber() {

@@ -7,8 +7,8 @@ import com.phones.utils.LocalizedName;
 public class SmartPhone extends MobilePhone {
     private boolean fourGSupport;
     private boolean waterResistant;
-    private boolean touchID;
-    private boolean faceId;
+    private boolean fingerUnlock;
+    private boolean faceUnlock;
     private String operatingSystem;
 
     @LocalizedName("4G")
@@ -22,13 +22,13 @@ public class SmartPhone extends MobilePhone {
     }
 
     @LocalizedName("Сканер отпечатков пальцев")
-    public boolean isTouchID() {
-        return touchID;
+    public boolean isFingerUnlock() {
+        return fingerUnlock;
     }
 
     @LocalizedName("Разблокировка по лицу")
-    public boolean isFaceId() {
-        return faceId;
+    public boolean isFaceUnlock() {
+        return faceUnlock;
     }
 
     @LocalizedName("Операционная система")
@@ -44,12 +44,12 @@ public class SmartPhone extends MobilePhone {
         this.waterResistant = waterResistant;
     }
 
-    public void setTouchID(boolean touchID) {
-        this.touchID = touchID;
+    public void setFingerUnlock(boolean fingerUnlock) {
+        this.fingerUnlock = fingerUnlock;
     }
 
-    public void setFaceId(boolean faceId) {
-        this.faceId = faceId;
+    public void setFaceUnlock(boolean faceUnlock) {
+        this.faceUnlock = faceUnlock;
     }
 
     public void setOperatingSystem(String operatingSystem) {
