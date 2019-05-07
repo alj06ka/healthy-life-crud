@@ -26,7 +26,7 @@ class MainWindowTest{
     public void start(Stage stage) {
         stage.setTitle("Phone editor test title");
         AbstractPhone phone = new SmartPhone();
-        VBox vBox = new ExtractFields(phone);
+        VBox vBox = new ExtractFields(stage, phone);
         vBox.getChildren().add(button);
         Scene scene = new Scene(vBox);
         stage.setScene(scene);
