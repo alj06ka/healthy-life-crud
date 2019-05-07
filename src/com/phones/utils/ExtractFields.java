@@ -55,5 +55,37 @@ public class ExtractFields extends VBox {
         Pane generatedField = new FieldGenerator(objectToInspect, field);
         gridPane.add(generatedField, 1, 0);
         return gridPane;
+    private Node generateObjectField(Object objectToInspect, FieldOptions field) {
+        BorderPane borderPane = new BorderPane();
+        Insets elementInsets = new Insets(10, 15, 15, 10);
+        ObservableList<ClassDescription> comboBoxValues = FXCollections.observableArrayList();
+        for (ClassDescription objectValue : objectListView.getItems()) {
+            if (objectValue.getaClass() == field.getClassType()) {
+                comboBoxValues.add(objectValue);
+            }
+        }
+        ComboBox<ClassDescription> comboBox = new ComboBox<>(comboBoxValues);
+        BorderPane.setMargin(comboBox, elementInsets);
+        borderPane.setLeft(comboBox);
+
+        Button addInnerClassButton = new Button("Add");
+        addInnerClassButton.setOnAction(actionEvent -> {
+            try {
+                Object innerObject = field.getGet().invoke(objectToInspect);
+                if (innerObject == null){
+                    innerObject = field.getGet().getReturnType().getDeclaredConstructor().newInstance();
+                    ClassDescription innerObjectDescribed = new ClassDescription(innerObject);
+                    objectListView.getItems().add(innerObjectDescribed);
+                    comboBoxValues.add(innerObjectDescribed);
+                    new EditWindow(stage, innerObjectDescribed);
+                }
+            } catch (IllegalAccessException | InvocationTargetException | InstantiationException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+        });
+        BorderPane.setMargin(addInnerClassButton, elementInsets);
+        borderPane.setRight(addInnerClassButton);
+
+        return borderPane;
     }
 }
