@@ -4,7 +4,10 @@ import com.phones.utils.FieldOptions;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class TextFieldEditor extends FieldWrapper {
+
     private TextField textField;
 
     public TextFieldEditor(Object objectToInspect, FieldOptions field) {
@@ -14,6 +17,14 @@ public class TextFieldEditor extends FieldWrapper {
 
         Object ObjectValue = getValueFromObject(this.fieldObject);
         writeObjectToElement(ObjectValue);
+
+        textField.textProperty().addListener((obs, oldText, newText) -> {
+            try {
+                fieldOptions.getSet().invoke(this.fieldObject, newText);
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override
