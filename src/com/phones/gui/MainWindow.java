@@ -7,15 +7,14 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 
 import static com.phones.Main.getClassList;
@@ -83,13 +82,28 @@ public class MainWindow extends Application {
 
         bottomNavigation.getChildren().addAll(addButton, editButton, removeButton);
 
+        MenuBar menuBar = new MenuBar();
+        Menu menuFile = new Menu("File");
+        menuBar.getMenus().add(menuFile);
+        MenuItem menuItem = new MenuItem("Save as..");
+        menuItem.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+            File file = fileChooser.showSaveDialog(primaryStage);
+        });
+        menuFile.getItems().add(menuItem);
+
         VBox vBox = new VBox();
+        vBox.getChildren().add(menuBar);
         vBox.getChildren().add(topNavigation);
         vBox.getChildren().add(objectListView);
         vBox.getChildren().add(bottomNavigation);
         Scene scene = new Scene(vBox);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    public static void mainWindow(String[] args) {
+        launch(args);
     }
 
 }
