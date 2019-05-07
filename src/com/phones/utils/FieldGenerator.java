@@ -5,6 +5,9 @@ import javafx.scene.layout.Pane;
 
 public class FieldGenerator extends Pane {
 
+    /**
+     * Creates GUI object depends on field type.
+     */
     public FieldGenerator(Object objectToInspect, FieldOptions field) {
         FieldWrapper newField;
         switch (field.getFieldType()) {
