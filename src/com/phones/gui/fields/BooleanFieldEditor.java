@@ -4,7 +4,10 @@ import com.phones.utils.FieldOptions;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class BooleanFieldEditor extends FieldWrapper {
+
     protected CheckBox checkBox;
 
     public BooleanFieldEditor(Object objectToInspect, FieldOptions field) {
@@ -14,6 +17,14 @@ public class BooleanFieldEditor extends FieldWrapper {
 
         Object ObjectValue = getValueFromObject(this.fieldObject);
         writeObjectToElement(ObjectValue);
+
+        checkBox.setOnAction(actionEvent -> {
+            try {
+                fieldOptions.getSet().invoke(this.fieldObject, getValueFromElement());
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override
