@@ -1,41 +1,51 @@
 package com.phones.utils;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import javafx.geometry.Insets;
+
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
-public class ExtractFields extends VBox {
+import static com.phones.Main.objectListView;
 
-    public ExtractFields(Object objectToParse) {
+public class ExtractFields extends VBox {
+    public Stage stage;
+
+    public ExtractFields(Stage stage, Object objectToParse) {
+        this.stage = stage;
         getChildren().addAll(generateFields(objectToParse));
     }
 
     /**
-     * Generate list of object fields to preview
+     * Generate list of object fields to preview in edit window (except navigate buttons).
      */
     public ArrayList<Node> generateFields(Object objectToParse) {
         ArrayList<FieldOptions> fields = FieldsParser.parseFields(objectToParse);
         ArrayList<Node> generatedFields = new ArrayList<>();
         for (FieldOptions field : fields) {
             if (field.getFieldType() == FieldOptions.FieldType.OBJECT) {
+
                 generatedFields.add(new Separator());
-                generatedFields.add(new Label(field.getFieldName()));
-                try {
-                    Object innerObject = field.getGet().invoke(objectToParse);
-                    if (innerObject == null){
-                        innerObject = field.getGet().getReturnType().getDeclaredConstructor().newInstance();
-                        field.getSet().invoke(objectToParse, innerObject);
-                    }
-                    generatedFields.addAll(generateFields(innerObject));
-                } catch (IllegalAccessException | InvocationTargetException | InstantiationException | NoSuchMethodException e) {
-                    e.printStackTrace();
-                }
+                Label titleLabel = new Label(field.getFieldName());
+
+                titleLabel.setPadding(new Insets(10, 15, 15, 5));
+                titleLabel.setFont(new Font("System Bold", 18));
+
+                generatedFields.add(titleLabel);
+                generatedFields.add(generateObjectField(objectToParse, field));
                 generatedFields.add(new Separator());
             } else {
                 generatedFields.add(generatePrimitiveField(objectToParse, field));
@@ -48,13 +58,22 @@ public class ExtractFields extends VBox {
      * Generate simple field like the following:
      * *Label*     *Component*
      */
-    public Node generatePrimitiveField(Object objectToInspect, FieldOptions field) {
-        GridPane gridPane = new GridPane();
-        gridPane.add(new Label(field.getFieldName()), 0, 0);
-        // Add field generating here
+    private Node generatePrimitiveField(Object objectToInspect, FieldOptions field) {
+        BorderPane borderPane = new BorderPane();
+        Insets elementInsets = new Insets(10, 15, 15, 10);
+        Label textLabel = new Label(field.getFieldName());
+        borderPane.setLeft(textLabel);
         Pane generatedField = new FieldGenerator(objectToInspect, field);
-        gridPane.add(generatedField, 1, 0);
-        return gridPane;
+        borderPane.setRight(generatedField);
+        BorderPane.setMargin(textLabel, elementInsets);
+        BorderPane.setMargin(generatedField, elementInsets);
+        return borderPane;
+    }
+
+
+    /**
+     * Generate object field with dropdown container and add button.
+     */
     private Node generateObjectField(Object objectToInspect, FieldOptions field) {
         BorderPane borderPane = new BorderPane();
         Insets elementInsets = new Insets(10, 15, 15, 10);
