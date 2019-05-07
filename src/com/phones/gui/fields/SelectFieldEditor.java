@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Class for handling Enum fields in a gui
@@ -34,6 +35,15 @@ public class SelectFieldEditor extends FieldWrapper {
             Object ObjectValue = getValueFromObject(this.fieldObject);
             writeObjectToElement(ObjectValue);
         }
+
+        comboBox.setOnAction(actionEvent -> {
+            try {
+                fieldOptions.getSet().invoke(this.fieldObject, getValueFromElement());
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
     @Override
