@@ -18,7 +18,6 @@ import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 
 import static com.phones.Main.getClassList;
-import static com.phones.Main.objectListView;
 
 
 public class MainWindow extends Application {
@@ -29,7 +28,7 @@ public class MainWindow extends Application {
         ObservableList<ClassDescription> classList = getClassList();
         primaryStage.setTitle("Phone editor");
 
-        objectListView = new ListView<>();
+        ListView<ClassDescription> objectListView = new ListView<>();
         objectListView.setOrientation(Orientation.VERTICAL);
 
         Label labelSelectClass = new Label("Select class: ");
