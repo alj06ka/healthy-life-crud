@@ -84,6 +84,26 @@ public class ExtractFields extends VBox {
             }
         }
         ComboBox<ClassDescription> comboBox = new ComboBox<>(comboBoxValues);
+        ClassDescription selectedDefaultOption = null;
+        try {
+            Object objectToFind = field.getGet().invoke(objectToInspect);
+            for (ClassDescription objectValue : comboBoxValues) {
+                if (objectValue.getClassObject() == objectToFind) {
+                    selectedDefaultOption = objectValue;
+                }
+            }
+            comboBox.getSelectionModel().select(selectedDefaultOption);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        comboBox.setOnAction(actionEvent -> {
+            ClassDescription selectedItem = comboBox.getSelectionModel().getSelectedItem();
+            try {
+                field.getSet().invoke(objectToInspect, selectedItem.getClassObject());
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        });
         BorderPane.setMargin(comboBox, elementInsets);
         borderPane.setLeft(comboBox);
 
@@ -91,12 +111,12 @@ public class ExtractFields extends VBox {
         addInnerClassButton.setOnAction(actionEvent -> {
             try {
                 Object innerObject = field.getGet().invoke(objectToInspect);
-                if (innerObject == null){
+                if (innerObject == null) {
                     innerObject = field.getGet().getReturnType().getDeclaredConstructor().newInstance();
                     ClassDescription innerObjectDescribed = new ClassDescription(innerObject);
                     objectListView.getItems().add(innerObjectDescribed);
                     comboBoxValues.add(innerObjectDescribed);
-                    new EditWindow(stage, innerObjectDescribed);
+                    new EditWindow(stage, innerObjectDescribed, objectListView);
                 }
             } catch (IllegalAccessException | InvocationTargetException | InstantiationException | NoSuchMethodException e) {
                 e.printStackTrace();
