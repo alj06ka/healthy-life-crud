@@ -9,13 +9,10 @@ import com.phones.phones.stationaryPhones.WiredPhone;
 import com.phones.utils.ClassDescription;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
 
 import static com.phones.gui.MainWindow.mainWindow;
 
 public class Main {
-
-    public static ListView<ClassDescription> objectListView;
 
     private static ObservableList<ClassDescription> classList;
 
