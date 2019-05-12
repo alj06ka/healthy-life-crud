@@ -1,7 +1,10 @@
 package com.phones.gui;
 
+import com.phones.gui.events.AddButtonEvent;
+import com.phones.gui.events.EditButtonEvent;
+import com.phones.gui.events.Executable;
+import com.phones.gui.events.RemoveButtonEvent;
 import com.phones.utils.ClassDescription;
-import com.phones.utils.EditWindow;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -15,7 +18,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 
 import static com.phones.Main.getClassList;
 
@@ -48,25 +50,15 @@ public class MainWindow extends Application {
         Insets buttonPadding = new Insets(10, 20, 10, 20);
 
         addButton.setOnAction(actionEvent -> {
-            try {
-                Object selectClassObject = selectClass.getValue().getaClass().getConstructor().newInstance();
-                ClassDescription newClassObject = new ClassDescription(selectClassObject);
-                objectListView.getItems().add(newClassObject);
-                new EditWindow(primaryStage, newClassObject, objectListView);
-            } catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
+            execute(new AddButtonEvent(), primaryStage, selectClass, objectListView);
         });
 
         editButton.setOnAction(actionEvent -> {
-            ClassDescription selectedItem = objectListView.getSelectionModel().getSelectedItem();
-            if (selectedItem != null) {
-                new EditWindow(primaryStage, selectedItem);
-            }
+            execute(new EditButtonEvent(), primaryStage, selectClass, objectListView);
         });
 
         removeButton.setOnAction(actionEvent -> {
-            objectListView.getItems().remove(objectListView.getSelectionModel().getSelectedItem());
+            execute(new RemoveButtonEvent(), primaryStage, selectClass, objectListView);
         });
 
         bottomNavigation.setSpacing(5);
@@ -99,6 +91,12 @@ public class MainWindow extends Application {
         Scene scene = new Scene(vBox);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private void execute(Executable ButtonEvent, Stage primaryStage,
+                         ChoiceBox<ClassDescription> selectedClass,
+                         ListView<ClassDescription> objectListView) {
+        ButtonEvent.run(primaryStage, selectedClass.getValue().getaClass(), objectListView);
     }
 
     public static void mainWindow(String[] args) {
