@@ -19,13 +19,13 @@ import javafx.stage.Stage;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
-import static com.phones.Main.objectListView;
-
 public class ExtractFields extends VBox {
-    public Stage stage;
+    private Stage stage;
+    private ListView<ClassDescription> objectListView;
 
-    public ExtractFields(Stage stage, Object objectToParse) {
+    public ExtractFields(Stage stage, Object objectToParse, ListView<ClassDescription> objectListView) {
         this.stage = stage;
+        this.objectListView = objectListView;
         getChildren().addAll(generateFields(objectToParse));
     }
 

@@ -52,7 +52,7 @@ public class MainWindow extends Application {
                 Object selectClassObject = selectClass.getValue().getaClass().getConstructor().newInstance();
                 ClassDescription newClassObject = new ClassDescription(selectClassObject);
                 objectListView.getItems().add(newClassObject);
-                new EditWindow(primaryStage, newClassObject);
+                new EditWindow(primaryStage, newClassObject, objectListView);
             } catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
             }

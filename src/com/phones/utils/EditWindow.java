@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,7 +17,7 @@ import javafx.stage.Stage;
  */
 public class EditWindow extends Stage {
 
-    public EditWindow(Stage parentStage, ClassDescription objectToShow) {
+    public EditWindow(Stage parentStage, ClassDescription objectToShow, ListView<ClassDescription> objectListView) {
         initOwner(parentStage);
         initModality(Modality.APPLICATION_MODAL);
         VBox container = new VBox();
@@ -24,15 +25,13 @@ public class EditWindow extends Stage {
         classTitle.setFont(new Font("System Bold", 18));
         classTitle.setPadding(new Insets(15));
         container.getChildren().addAll(classTitle, new Separator());
-        VBox objectFields = new ExtractFields(parentStage, objectToShow.getClassObject());
+        VBox objectFields = new ExtractFields(parentStage, objectToShow.getClassObject(), objectListView);
         container.getChildren().add(objectFields);
 
         HBox bottomNavigation = new HBox();
         Button addButton = new Button("Apply");
         addButton.setPadding(new Insets(5, 10, 10, 5));
-        addButton.setOnAction(actionEvent -> {
-            this.close();
-        });
+        addButton.setOnAction(actionEvent -> this.close());
 
         HBox.setMargin(addButton, new Insets(10));
         bottomNavigation.getChildren().add(addButton);
