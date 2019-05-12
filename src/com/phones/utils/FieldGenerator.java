@@ -1,6 +1,9 @@
 package com.phones.utils;
 
-import com.phones.gui.fields.*;
+import com.phones.gui.fields.BooleanFieldEditor;
+import com.phones.gui.fields.FieldWrapper;
+import com.phones.gui.fields.SelectFieldEditor;
+import com.phones.gui.fields.TextFieldEditor;
 import javafx.scene.layout.Pane;
 
 public class FieldGenerator extends Pane {
