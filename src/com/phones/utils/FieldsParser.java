@@ -14,7 +14,7 @@ public class FieldsParser {
     /**
      * Map for getting primitive types
      */
-    private static Map<Class<?>, Class<?>> PRIMITIVE_TYPE = new HashMap<>();
+    public static Map<Class<?>, Class<?>> PRIMITIVE_TYPE = new HashMap<>();
 
     static {
         PRIMITIVE_TYPE.put(Boolean.class, boolean.class);
