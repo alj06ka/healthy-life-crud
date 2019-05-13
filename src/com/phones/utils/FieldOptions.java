@@ -68,6 +68,11 @@ public class FieldOptions {
         this.classType = classType;
     }
 
+    public boolean isPrimitive() {
+        return classType.equals(Boolean.class) | classType.equals(Integer.class) |
+                classType.equals(Enum.class) | classType.equals(String.class);
+    }
+
     public enum FieldType {
         LIST,
         OBJECT,
