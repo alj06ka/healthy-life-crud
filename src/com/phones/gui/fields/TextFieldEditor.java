@@ -20,7 +20,13 @@ public class TextFieldEditor extends FieldWrapper {
 
         textField.textProperty().addListener((obs, oldText, newText) -> {
             try {
-                fieldOptions.getSet().invoke(this.fieldObject, newText);
+                if (this.fieldOptions.getClassType().equals(Integer.class)) {
+                    fieldOptions.getSet().invoke(this.fieldObject, Integer.parseInt(newText));
+                } else if (this.fieldOptions.getClassType().equals(Double.class)) {
+                    fieldOptions.getSet().invoke(this.fieldObject, Double.parseDouble(newText));
+                } else {
+                    fieldOptions.getSet().invoke(this.fieldObject, newText);
+                }
             } catch (IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
             }
