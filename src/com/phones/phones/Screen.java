@@ -31,7 +31,7 @@ public class Screen {
     }
 
     public void setHeight(String height) {
-        if (height.length() > 0){
+        if (height.length() > 0) {
             this.height = parseInt(height);
         } else {
             this.height = 0;
