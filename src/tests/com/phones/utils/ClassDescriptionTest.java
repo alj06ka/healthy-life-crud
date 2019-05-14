@@ -29,7 +29,8 @@ class ClassDescriptionTest {
     @Test
     void testGetNameIfNameIsSet() {
         @LocalizedName("Some name")
-        class TestNamedClass{}
+        class TestNamedClass {
+        }
 
         ClassDescription testObject = new ClassDescription(TestNamedClass.class);
         Assertions.assertEquals(testObject.getName(), "Some name");

@@ -32,7 +32,7 @@ public class FieldsParserTest {
     }
 
     @Test
-    public void testParseFieldsFieldLocalizedNames()  {
+    public void testParseFieldsFieldLocalizedNames() {
         ArrayList<FieldOptions> fields = parseFields(new ClassToInspect());
         Set<String> actualNames = new HashSet<>();
         for (FieldOptions field : fields) {
@@ -45,7 +45,7 @@ public class FieldsParserTest {
     }
 
     @Test
-    public void testParseFieldsFieldClassType()  {
+    public void testParseFieldsFieldClassType() {
         ArrayList<FieldOptions> fields = parseFields(new ClassToInspect());
         Set<Class> actualNames = new HashSet<>();
         for (FieldOptions field : fields) {

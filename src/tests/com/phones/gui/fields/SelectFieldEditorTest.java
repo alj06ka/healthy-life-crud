@@ -23,7 +23,7 @@ public class SelectFieldEditorTest {
         ClassToInspect objectToInspect = new ClassToInspect();
         ArrayList<FieldOptions> fields = parseFields(objectToInspect);
         for (FieldOptions field : fields) {
-            if (field.getFieldType() == FieldOptions.FieldType.LIST){
+            if (field.getFieldType() == FieldOptions.FieldType.LIST) {
                 SelectFieldEditor selectFieldEditor = new SelectFieldEditor(objectToInspect, field);
                 System.out.println(selectFieldEditor);
             }
