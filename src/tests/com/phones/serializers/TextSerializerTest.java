@@ -2,9 +2,7 @@ package com.phones.serializers;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 class TextSerializerTest {
@@ -16,13 +14,13 @@ class TextSerializerTest {
         testObject.setValue(100004);
         TestClass1 testClass1 = new TestClass1();
         testClass1.setName("New name");
-        testObject.setObject(testClass1);
+        testObject.setNewObject(testClass1);
         ArrayList<Object> testArray = new ArrayList<>();
         testArray.add(testObject);
         testArray.add(testClass1);
         try {
             BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream("test.txt"));
-            TextSerializer serializer = new TextSerializer();
+            Serializable serializer = new TextSerializer();
             serializer.serialize(testArray, out);
             out.close();
         } catch (IOException e) {
@@ -32,21 +30,21 @@ class TextSerializerTest {
 
     @Test
     void deserialize() {
-        new TestClass();
+        try {
+            BufferedInputStream in = new BufferedInputStream(new FileInputStream("test.txt"));
+            Serializable serializer = new TextSerializer();
+            Object object = serializer.deserialize(in);
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
-    @Test
-    void serialize1() {
-    }
-
-    @Test
-    void deserialize1() {
-    }
+    
 
     public class TestClass {
         private String name;
         private int value;
-        private TestClass1 object;
+        private TestClass1 newObject;
 
         public String getName() {
             return name;
@@ -64,12 +62,12 @@ class TextSerializerTest {
             this.value = value;
         }
 
-        public TestClass1 getObject() {
-            return object;
+        public TestClass1 getNewObject() {
+            return newObject;
         }
 
-        public void setObject(TestClass1 object) {
-            this.object = object;
+        public void setNewObject(TestClass1 newObject) {
+            this.newObject = newObject;
         }
     }
 
