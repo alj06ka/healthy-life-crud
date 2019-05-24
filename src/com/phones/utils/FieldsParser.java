@@ -40,6 +40,10 @@ public class FieldsParser {
         return PRIMITIVE_TYPE.containsKey(classType);
     }
 
+    public static Class<?> getBoxedType(Class<?> boxedType){
+        return PRIMITIVE_TYPE.get(boxedType);
+    }
+
     private static boolean isBoolean(Class<?> classType) {
         return (classType == boolean.class || classType == Boolean.class);
     }
