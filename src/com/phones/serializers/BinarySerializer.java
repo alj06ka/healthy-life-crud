@@ -1,10 +1,12 @@
 package com.phones.serializers;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class BinarySerializer implements Serializable {
+
     @Override
-    public void serialize(Object objectToWrite, OutputStream outputStream) {
+    public void serialize(ArrayList<Object> objectToWrite, OutputStream outputStream) {
         try {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
             objectOutputStream.writeObject(objectToWrite);
@@ -15,7 +17,7 @@ public class BinarySerializer implements Serializable {
     }
 
     @Override
-    public Object deserialize(InputStream inputStream) {
+    public ArrayList<Object> deserialize(InputStream inputStream) {
         Object deserializedObject = null;
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
@@ -24,6 +26,6 @@ public class BinarySerializer implements Serializable {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return deserializedObject;
+        return (ArrayList<Object>) deserializedObject;
     }
 }

@@ -4,10 +4,12 @@ import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 public class XMLSerializer implements Serializable {
+
     @Override
-    public void serialize(Object objectToWrite, OutputStream outputStream) {
+    public void serialize(ArrayList<Object> objectToWrite, OutputStream outputStream) {
         try {
             XMLEncoder xmlEncoder = new XMLEncoder(outputStream);
             xmlEncoder.writeObject(objectToWrite);
@@ -19,7 +21,7 @@ public class XMLSerializer implements Serializable {
     }
 
     @Override
-    public Object deserialize(InputStream inputStream) {
+    public ArrayList<Object> deserialize(InputStream inputStream) {
         Object deserializedObject = null;
         try {
             XMLDecoder xmlDecoder = new XMLDecoder(inputStream);
@@ -28,6 +30,6 @@ public class XMLSerializer implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return deserializedObject;
+        return (ArrayList<Object>)deserializedObject;
     }
 }
