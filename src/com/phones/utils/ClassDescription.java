@@ -1,5 +1,7 @@
 package com.phones.utils;
 
+import com.phones.annotations.LocalizedName;
+
 /**
  * Class for describing class and object of this class.
  */

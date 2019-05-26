@@ -14,10 +14,11 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TextSerializer {
+public class TextSerializer implements Serializable {
 
     private ArrayList<DependencyRecord> dependencyRestorer;
 
+    @Override
     public void serialize(ArrayList<Object> ListToSerialize, OutputStream outputStream) {
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
         try {
@@ -52,11 +53,12 @@ public class TextSerializer {
         return stringBuilder.toString();
     }
 
+    @Override
     public ArrayList<Object> deserialize(InputStream inputStream) {
         ArrayList<Object> resultObjectList = new ArrayList<>();
         dependencyRestorer = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        String line = null;
+        String line;
         try {
             Object currentObject = null;
             HashMap<String, String> fields = new HashMap<>();

@@ -1,7 +1,7 @@
 package com.phones.phones.stationaryPhones;
 
 import com.phones.phones.StationaryPhone;
-import com.phones.utils.LocalizedName;
+import com.phones.annotations.LocalizedName;
 
 @LocalizedName("Проводной телефон")
 public class WiredPhone extends StationaryPhone {

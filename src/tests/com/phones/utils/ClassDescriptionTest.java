@@ -1,5 +1,6 @@
 package com.phones.utils;
 
+import com.phones.annotations.LocalizedName;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

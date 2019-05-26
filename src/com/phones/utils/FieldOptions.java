@@ -1,5 +1,7 @@
 package com.phones.utils;
 
+import com.phones.annotations.LocalizedName;
+
 import java.lang.reflect.Method;
 
 public class FieldOptions {

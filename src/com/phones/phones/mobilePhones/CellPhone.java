@@ -1,7 +1,7 @@
 package com.phones.phones.mobilePhones;
 
 import com.phones.phones.MobilePhone;
-import com.phones.utils.LocalizedName;
+import com.phones.annotations.LocalizedName;
 
 @LocalizedName("Кнопочный телефон")
 public class CellPhone extends MobilePhone {

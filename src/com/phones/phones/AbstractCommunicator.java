@@ -1,6 +1,6 @@
 package com.phones.phones;
 
-import com.phones.utils.LocalizedName;
+import com.phones.annotations.LocalizedName;
 
 public abstract class AbstractCommunicator {
     private String brand;

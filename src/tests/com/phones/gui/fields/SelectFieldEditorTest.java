@@ -1,7 +1,7 @@
 package com.phones.gui.fields;
 
 import com.phones.utils.FieldOptions;
-import com.phones.utils.LocalizedName;
+import com.phones.annotations.LocalizedName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
