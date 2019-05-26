@@ -1,4 +1,4 @@
-package com.phones.utils;
+package com.phones.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
