@@ -3,6 +3,7 @@ package com.phones.serializers;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 public class Serializer implements Serializable {
     private Serializable serializer;
@@ -12,13 +13,13 @@ public class Serializer implements Serializable {
     }
 
     @Override
-    public void serialize(Object objectToWrite, OutputStream outputStream) {
+    public void serialize(ArrayList<Object> objectToWrite, OutputStream outputStream) {
         ByteArrayOutputStream newOutputStream = new ByteArrayOutputStream();
         serializer.serialize(objectToWrite, newOutputStream);
     }
 
     @Override
-    public Object deserialize(InputStream inputStream) {
+    public ArrayList<Object> deserialize(InputStream inputStream) {
         return serializer.deserialize(inputStream);
     }
 }
