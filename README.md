@@ -3,6 +3,7 @@ Application was created for learning OOP principles.
 ## Features
 - Automatically GUI class fields creation using class reflection.
 - 3 different serialization types.
+- Custom object serialization to text file.
 - Serialization plugin support.
 ## Tech/frameworks
 - Java 11
