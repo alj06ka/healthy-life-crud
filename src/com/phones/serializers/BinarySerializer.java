@@ -9,10 +9,9 @@ public class BinarySerializer implements Serializable {
     public void serialize(ArrayList<Object> objectToWrite, OutputStream outputStream) {
         try {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-            objectOutputStream.writeObject(objectToWrite);
+            objectOutputStream.writeObject((Object)objectToWrite);
             objectOutputStream.close();
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -24,7 +23,6 @@ public class BinarySerializer implements Serializable {
             deserializedObject = objectInputStream.readObject();
             objectInputStream.close();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
         }
         return (ArrayList<Object>) deserializedObject;
     }
