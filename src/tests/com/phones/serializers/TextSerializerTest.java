@@ -46,8 +46,8 @@ class TextSerializerTest {
         smartPhone.setFaceUnlock(true);
         smartPhone.setSimSlots(2);
         Screen screen = new Screen();
-        screen.setWidth("15");
-        screen.setHeight("20");
+        screen.setWidth(15);
+        screen.setHeight(20);
         smartPhone.setResolution(screen);
         testArray.add(smartPhone);
         testArray.add(new CellPhone());
