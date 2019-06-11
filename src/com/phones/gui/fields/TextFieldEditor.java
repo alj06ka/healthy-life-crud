@@ -21,8 +21,14 @@ public class TextFieldEditor extends FieldWrapper {
         textField.textProperty().addListener((obs, oldText, newText) -> {
             try {
                 if (this.fieldOptions.getClassType().equals(Integer.class)) {
+                    if (newText.length() == 0) {
+                        newText = "0";
+                    }
                     fieldOptions.getSet().invoke(this.fieldObject, Integer.parseInt(newText));
                 } else if (this.fieldOptions.getClassType().equals(Double.class)) {
+                    if (newText.length() == 0) {
+                        newText = "0";
+                    }
                     fieldOptions.getSet().invoke(this.fieldObject, Double.parseDouble(newText));
                 } else {
                     fieldOptions.getSet().invoke(this.fieldObject, newText);
