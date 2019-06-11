@@ -5,6 +5,7 @@ import com.phones.plugins.PluginOptions;
 import com.phones.serializers.Serializable;
 import com.phones.serializers.SerializerDescription;
 import com.phones.utils.ClassDescription;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -30,7 +31,7 @@ public class FileExtensionChooser extends Stage {
         choiceBox.setItems(Main.getSerializersList());
         messageBox.getChildren().add(choiceBox);
         ChoiceBox<PluginOptions> pluginsBox = new ChoiceBox<>();
-        choiceBox.setItems(Main.getSerializersList());
+        pluginsBox.setItems(FXCollections.observableArrayList(Main.getPlugins()));
         messageBox.getChildren().add(pluginsBox);
         BorderPane.setMargin(choiceBox, new Insets(30));
         BorderPane.setMargin(pluginsBox, new Insets(30));
