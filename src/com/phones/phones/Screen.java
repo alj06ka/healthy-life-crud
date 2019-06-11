@@ -2,8 +2,6 @@ package com.phones.phones;
 
 import com.phones.annotations.LocalizedName;
 
-import static java.lang.Integer.parseInt;
-
 @LocalizedName("Дисплей")
 public class Screen {
     private int width;
@@ -17,12 +15,8 @@ public class Screen {
         return width;
     }
 
-    public void setWidth(String width) {
-        if (width.length() > 0) {
-            this.width = parseInt(width);
-        } else {
-            this.width = 0;
-        }
+    public void setWidth(int width) {
+            this.width = width;
     }
 
     @LocalizedName("Высота")
@@ -30,11 +24,7 @@ public class Screen {
         return height;
     }
 
-    public void setHeight(String height) {
-        if (height.length() > 0) {
-            this.height = parseInt(height);
-        } else {
-            this.height = 0;
-        }
+    public void setHeight(int height) {
+        this.height = height;
     }
 }
