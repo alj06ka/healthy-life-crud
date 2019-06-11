@@ -74,12 +74,12 @@ public class MainWindow extends Application {
         MenuBar menuBar = new MenuBar();
         Menu menuFile = new Menu("File");
         menuBar.getMenus().add(menuFile);
-        MenuItem menuItem = new MenuItem("Save as..");
-        menuItem.setOnAction(event -> {
-            FileChooser fileChooser = new FileChooser();
-            File file = fileChooser.showSaveDialog(primaryStage);
-        });
-        menuFile.getItems().add(menuItem);
+        MenuItem menuOpen = new MenuItem("Open..");
+        MenuItem menuSave = new MenuItem("Save as..");
+        menuOpen.setOnAction(actionEvent -> execute(new OpenFileEvent(), primaryStage, selectClass, objectListView));
+        menuSave.setOnAction(actionEvent -> execute(new SaveFileEvent(), primaryStage, selectClass, objectListView));
+        menuFile.getItems().add(menuOpen);
+        menuFile.getItems().add(menuSave);
 
         VBox vBox = new VBox();
         vBox.getChildren().add(menuBar);
@@ -94,11 +94,11 @@ public class MainWindow extends Application {
     private void execute(Executable ButtonEvent, Stage primaryStage,
                          ChoiceBox<ClassDescription> selectedClass,
                          ListView<ClassDescription> objectListView) {
-        ButtonEvent.run(primaryStage, selectedClass.getValue().getaClass(), objectListView);
-    }
-
-    public static void mainWindow(String[] args) {
-        launch(args);
+        Class<?> selectedClazz = null;
+        if (selectedClass.getValue() != null) {
+            selectedClazz = selectedClass.getValue().getaClass();
+        }
+        ButtonEvent.run(primaryStage, selectedClazz, objectListView);
     }
 
 }
