@@ -59,12 +59,12 @@ public class TextSerializer implements Serializable {
         dependencyRestorer = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line;
+        Pattern pattern = Pattern.compile("\\[(.*)]");
         try {
             Object currentObject = null;
             HashMap<String, String> fields = new HashMap<>();
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith("[")) {
-                    Pattern pattern = Pattern.compile("\\[(.*)]");
                     Matcher matcher = pattern.matcher(line);
                     if (matcher.find()) {
                         String className = matcher.group(1);
