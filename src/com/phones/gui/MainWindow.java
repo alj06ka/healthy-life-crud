@@ -1,9 +1,6 @@
 package com.phones.gui;
 
-import com.phones.gui.events.AddButtonEvent;
-import com.phones.gui.events.EditButtonEvent;
-import com.phones.gui.events.Executable;
-import com.phones.gui.events.RemoveButtonEvent;
+import com.phones.gui.events.*;
 import com.phones.utils.ClassDescription;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -14,15 +11,16 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import java.io.File;
 
 import static com.phones.Main.getClassList;
 
 
 public class MainWindow extends Application {
+
+    public static void mainWindow(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
